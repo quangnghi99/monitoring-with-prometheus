@@ -1,7 +1,0 @@
-# scrape_configs.yml
-- job_name: 'node_exporter'
-  basic_auth:
-    username: 'Nghi'
-    password: 'nghi'
-  static_configs:
-    - targets: ['10.0.30.72:9100']
