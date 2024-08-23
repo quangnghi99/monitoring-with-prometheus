@@ -30,11 +30,24 @@ services:
       - grafana_storage:/var/lib/grafana
     networks:
       - monitoring
+  
+  alertmanager:
+    image: prom/alertmanager:latest
+    restart: unless-stopped
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./alertmanager:/etc/alertmanager
+    networks:
+      - monitoring
 
 volumes:
   prometheus_data:
   prometheus_config:
   grafana_storage:
+  alertmanager_config:
+  alertmanager_data:
+
 networks:
   monitoring:
     driver: bridge
