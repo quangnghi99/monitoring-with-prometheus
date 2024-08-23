@@ -12,13 +12,22 @@ services:
     volumes:
       - prometheus_data:/prometheus
       - prometheus_config:/etc/prometheus
-      - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml
-      - ./prometheus/scrape_config.yaml:/etc/prometheus/scrape_config.yaml
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/node_exporter.yml:/etc/prometheus/node_exporter.yml
       - ./prometheus/rules:/etc/prometheus/rules
-      - ./prometheus/web-config.yaml:/etc/prometheus/web-config.yaml
+      - ./prometheus/web-config.yml:/etc/prometheus/web-config.yml
     ports:
       - "9090:9090"
+  grafana:
+    image: grafana/grafana:latest
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_storage:/var/lib/grafana
+volumes:
 
 volumes:
   prometheus_data:
   prometheus_config:
+  grafana_storage:

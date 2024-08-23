@@ -13,14 +13,13 @@ alerting:
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
-	- rules/node_exporter.yml
+  - rules/node_exporter.yml
 
 # A scrape configuration containing exactly one endpoint to scrape:
 scrape_configs:
 # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  - job_name: 'node_exporter'
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
-    file_sd_configs:
-      - files:
-        - '/etc/prometheus/scrape_configs.yml'
+  file_sd_configs:
+    - files:
+      - '/etc/prometheus/node_exporter.yml'
