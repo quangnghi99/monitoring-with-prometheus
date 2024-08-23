@@ -7,11 +7,15 @@ services:
       - "--storage.tsdb.path=/prometheus"
       - "--web.console.libraries=/usr/share/prometheus/console_libraries"
       - "--web.console.templates=/usr/share/prometheus/consoles"
-      - "--web.config.file=/etc/prometheus/web.yml"
+      - "--web.config.file=/etc/prometheus/web-config.yml"
       - "--web.enable-lifecycle"
     volumes:
       - prometheus_data:/prometheus
       - prometheus_config:/etc/prometheus
+      - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml
+      - ./prometheus/scrape_config.yaml:/etc/prometheus/scrape_config.yaml
+      - ./prometheus/rules:/etc/prometheus/rules
+      - ./prometheus/web-config.yaml:/etc/prometheus/web-config.yaml
     ports:
       - "9090:9090"
 

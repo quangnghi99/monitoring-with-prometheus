@@ -1,0 +1,4 @@
+# scrape_configs.yml
+- job_name: 'node_exporter'
+  static_configs:
+    - targets: ['10.0.30.72:9100']
