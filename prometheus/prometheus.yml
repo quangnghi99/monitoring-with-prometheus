@@ -17,9 +17,11 @@ rule_files:
 
 # A scrape configuration containing exactly one endpoint to scrape:
 scrape_configs:
-# The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-    # metrics_path defaults to '/metrics'
-    # scheme defaults to 'http'.
-  file_sd_configs:
-    - files:
-      - '/etc/prometheus/node_exporter.yml'
+  - job_name: 'Linux'
+    file_sd_configs:
+      - files:
+        - '/etc/prometheus/linux_target.yml'
+  - job_name: 'Windows'
+    file_sd_configs:
+      - files:
+        - '/etc/prometheus/windows_target.yml'
