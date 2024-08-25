@@ -30,3 +30,17 @@ scrape_configs:
     static_configs:
     - targets: 
       - '10.0.30.254:9100'
+  #SNMP
+  - job_name: 'palo_alto_snmp'
+    static_configs:
+      - targets: ['10.0.30.20:161']
+    metrics_path: /snmp
+    params:
+      module: [palo_alto] # Phải khớp với tên module trong file snmp.yml
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: snmp-exporter:9116  # Thay bằng IP của SNMP Exporter

@@ -40,6 +40,14 @@ services:
       - ./alertmanager:/etc/alertmanager
     networks:
       - monitoring
+  services:
+  snmp-exporter:
+    image: prom/snmp-exporter:latest
+    container_name: snmp-exporter
+    ports:
+      - "9116:9116"
+    networks:
+      - monitoring
 
 volumes:
   prometheus_data:
