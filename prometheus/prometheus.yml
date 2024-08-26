@@ -35,7 +35,7 @@ scrape_configs:
       - targets: ['10.0.30.20:161']
     metrics_path: /snmp
     params:
-      module: [palo_alto] # Phải khớp với tên module trong file snmp.yml
+      module: [if_mib] # Phải khớp với tên module trong file snmp.yml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
