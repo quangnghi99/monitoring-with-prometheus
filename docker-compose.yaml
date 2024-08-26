@@ -40,12 +40,17 @@ services:
       - ./alertmanager:/etc/alertmanager
     networks:
       - monitoring
-  services:
+  
   snmp-exporter:
     image: prom/snmp-exporter:latest
     container_name: snmp-exporter
     ports:
       - "9116:9116"
+      - "161:161/udp"
+    volumes:
+      - ./snmp_exporter:/etc/snmp-exporter
+    commnad:
+      - --config.file=/etc/snmp-exporter/snmp.yml
     networks:
       - monitoring
 
